@@ -1,7 +1,9 @@
 import requests
-import semChunk as chunking
+#import semChunk as chunking
 from bs4 import BeautifulSoup
-import preProcessing
+#import preProcessing
+import fast
+import embedding
 
 
 url='https://indiankanoon.org/search/?formInput=doctypes:supremecourt%20fromdate:1-1-2017%20todate:%2031-12-2017'
@@ -29,14 +31,20 @@ if response.status_code == 200:
                 precedent.extract() #removes precedent data structure because we do not need it
             
             content=doc.find_all('p')
+            doc=""
 
             for con in content:
-                con=con.get_text(strip=True)
-                print("\n",con)
-                #chunks=chunking.get_chunks_fixed_size(con,4)
-                #chunks=preProcessing.recursiveChunk(con)
-            #chunking.semChunk(chunks)
-            #put in vector db
+                doc=doc+con.get_text(strip=True)
+                #print(doc)
+                
+            chunks=fast.semChunk(doc)
+            for i in chunks:
+                print("New Chunk")
+                print(i)
+                print('\n\n\n')
+            #print(doc)
+            #embedding.generateEmbed(chunks)
+
 
         break
 
