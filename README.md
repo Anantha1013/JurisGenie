@@ -1,5 +1,5 @@
 # JurisGenie
-A RAG based tool to search and extract from legal documents on giving queries.  
+A RAG based tool to search and retrieve legal documents based on user's queries.  
 
 Google Colab:
 https://colab.research.google.com/drive/1Le0-j8OuRolTmZVM5z9EwG0MxYEbz5ug?usp=sharing
